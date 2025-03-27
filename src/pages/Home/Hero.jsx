@@ -1,4 +1,5 @@
 import MainButton from "../../components/MainButton";
+import { Link } from "react-router-dom";
 function Hero() {
   return (
     <div className="text-center py-16 md:py-28 px-8 lg:px-[25vw]">
@@ -8,11 +9,13 @@ function Hero() {
       </h1>
       <p className="text-base sm:text-lg md:text-xl my-16 md:px-18 lg:text-2xl">
         Looking for high-quality products at unbeatable prices? You’ve come to
-        the right place! At FakeStore, we offer a wide range of fashion,
+        the right place! In Shopy, we offer a wide range of fashion,
         electronics, accessories, and more – all carefully selected to meet your
         needs.
       </p>
-      <MainButton text="Shop now"></MainButton>
+      <Link to="shop">
+        <MainButton text="Shop now"></MainButton>
+      </Link>
     </div>
   );
 }
