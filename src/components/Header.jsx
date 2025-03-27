@@ -12,9 +12,11 @@ function Header() {
 
   return (
     <header className="flex justify-between p-6 shadow-xl text-gray-500">
-      <h2 className="text-blue-600 font-bold text-2xl sm:text-3xl md:text-4xl md:w-[120px]">
-        Shopy
-      </h2>
+      <Link to="/">
+        <h2 className="text-blue-600 font-bold text-2xl sm:text-3xl md:text-4xl md:w-[120px]">
+          Shopy
+        </h2>
+      </Link>
       <div className="flex items-center gap-4 sm:gap-8">
         <Link
           to="/"
