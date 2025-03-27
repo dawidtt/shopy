@@ -11,7 +11,7 @@ function Header() {
   const isShop = location.pathname === "shop";
 
   return (
-    <div className="flex justify-between p-6 shadow-xl text-gray-500">
+    <header className="flex justify-between p-6 shadow-xl text-gray-500">
       <h2 className="text-blue-600 font-bold text-2xl sm:text-3xl md:text-4xl md:w-[120px]">
         Shopy
       </h2>
@@ -55,7 +55,7 @@ function Header() {
           <FaShoppingCart size="25px"></FaShoppingCart>
         </Link>
       </div>
-    </div>
+    </header>
   );
 }
 
