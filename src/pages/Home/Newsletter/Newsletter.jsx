@@ -10,7 +10,7 @@ function Newsletter() {
       <div className="  md:flex flex-col  justify-around px-5 max-w-[600px]">
         <div className="p-5 ">
           <h3 className="text-lg font-bold  md:text-3xl">
-            Stay Updated with FakeStore!
+            Stay Updated with Shopy!
           </h3>
           <p className=" lg:text-lg mt-4 md:pt-6">
             Join our newsletter and be the first to know about exclusive deals,
