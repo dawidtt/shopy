@@ -1,3 +1,4 @@
+import React from "react";
 import PropTypes from "prop-types";
 function MainButton({ text }) {
   return (

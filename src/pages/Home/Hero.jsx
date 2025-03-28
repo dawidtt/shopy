@@ -1,4 +1,4 @@
-import MainButton from "../../components/MainButton";
+import MainButton from "../../components/MainButton/MainButton";
 import { Link } from "react-router-dom";
 function Hero() {
   return (
