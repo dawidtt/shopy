@@ -3,6 +3,7 @@ import Hero from "./Hero";
 import Testimonials from "./Testimonials/Testimonials";
 import WhyUs from "./WhyUs/WhyUs";
 import Newsletter from "./Newsletter/Newsletter";
+import Footer from "../../components/Footer";
 Testimonials;
 function Home() {
   return (
@@ -13,6 +14,7 @@ function Home() {
         <WhyUs></WhyUs>
         <Testimonials></Testimonials>
         <Newsletter></Newsletter>
+        <Footer></Footer>
       </main>
     </div>
   );
