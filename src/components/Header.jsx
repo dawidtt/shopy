@@ -11,7 +11,7 @@ function Header() {
   const isShop = location.pathname === "shop";
 
   return (
-    <header className="flex justify-between p-6 shadow-xl text-gray-500 sticky top-0 z-5 w-[100vw]  bg-white">
+    <header className="flex justify-between p-6 shadow-xl text-gray-500 sticky top-0 z-5 w-[100%]  bg-white">
       <Link to="/">
         <h2 className="text-blue-600 font-bold text-2xl sm:text-3xl md:text-4xl md:w-[120px]">
           Shopy
