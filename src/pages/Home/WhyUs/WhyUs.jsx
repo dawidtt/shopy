@@ -5,8 +5,8 @@ import Advantage from "./Advantage";
 
 function WhyUs() {
   return (
-    <div className="text-center bg-blue-100 py-12">
-      <h3 className="text-lg font-bold mb-10 md:text-2xl">Why shop with us</h3>
+    <div className="text-center bg-blue-200 py-12 px-4">
+      <h3 className="text-lg font-bold mb-12 md:text-2xl">Why shop with us</h3>
       <div className="flex flex-col items-center justify-center gap-12 md:flex-row">
         <Advantage
           icon={<FaBasketShopping size={"35px"} fill="#2563eb" />}
