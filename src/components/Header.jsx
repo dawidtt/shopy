@@ -4,6 +4,7 @@ import { FaUsers } from "react-icons/fa";
 import { FaShoppingBasket } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
+import Logo from "./Logo";
 function Header() {
   let location = useLocation();
   const isHome = location.pathname === "/";
@@ -12,11 +13,7 @@ function Header() {
 
   return (
     <header className="flex justify-between p-6 shadow-xl text-gray-500 sticky top-0 z-5 w-[100%]  bg-white">
-      <Link to="/">
-        <h2 className="text-blue-600 font-bold text-2xl sm:text-3xl md:text-4xl md:w-[120px]">
-          Shopy
-        </h2>
-      </Link>
+      <Logo></Logo>
       <div className="flex items-center gap-4 sm:gap-8">
         <Link
           to="/"
