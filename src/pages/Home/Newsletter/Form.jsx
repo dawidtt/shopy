@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import MainButton from "../../../components/MainButton/MainButton";
 import { useState } from "react";
 function Form() {
@@ -9,7 +8,7 @@ function Form() {
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/i;
+    const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/i;
     setIsEmailWrong(!emailRegex.test(email));
   };
   return (
@@ -40,5 +39,4 @@ function Form() {
   );
 }
 
-Form.PropTypes = {};
 export default Form;
