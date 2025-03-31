@@ -4,6 +4,7 @@ import "./assets/index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import ErrorPage from "./pages/ErrorPage";
+import AboutUs from "./pages/AboutUs/AboutUs";
 
 const router = createBrowserRouter([
   {
@@ -11,7 +12,10 @@ const router = createBrowserRouter([
     element: <Home></Home>,
     errorElement: <ErrorPage></ErrorPage>,
   },
-  {},
+  {
+    path: "about-us",
+    element: <AboutUs />,
+  },
 ]);
 
 createRoot(document.getElementById("root")).render(

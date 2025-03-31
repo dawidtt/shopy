@@ -8,8 +8,8 @@ import Logo from "./Logo";
 function Header() {
   let location = useLocation();
   const isHome = location.pathname === "/";
-  const isAboutUs = location.pathname === "about-us";
-  const isShop = location.pathname === "shop";
+  const isAboutUs = location.pathname === "/about-us";
+  const isShop = location.pathname === "/shop";
 
   return (
     <header className="flex justify-between p-6 shadow-xl text-gray-500 sticky top-0 z-5 w-[100%]  bg-white">
