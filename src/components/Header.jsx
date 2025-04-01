@@ -26,7 +26,7 @@ function Header() {
           <span className="hidden sm:block text-xl">Home</span>
         </Link>
         <Link
-          to="about-us"
+          to="/about-us"
           className={
             "flex items-center justify-center gap-2 p-2 hover:text-blue-500 hover:border-b-blue-500 transition-colors" +
             (isAboutUs ? " border-b-gray-500 border-b-2" : "")
@@ -36,7 +36,7 @@ function Header() {
           <span className="hidden sm:block text-xl">About us</span>
         </Link>
         <Link
-          to="shop"
+          to="/shop"
           className={
             "flex items-center justify-center gap-2 p-2 hover:text-blue-500 hover:border-b-blue-500 transition-colors" +
             (isShop ? " border-b-gray-500 border-b-2" : "")
