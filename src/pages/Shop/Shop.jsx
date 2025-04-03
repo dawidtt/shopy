@@ -1,22 +1,59 @@
 import Header from "../../components/Header";
 import { IoIosSearch } from "react-icons/io";
 import Filters from "./Filters";
+import { useFetchShop } from "../../hooks/useFetchShop";
+import Loading from "./Loading";
+import ProductCard from "./ProductCard";
 function Shop() {
+  const { data, loading, error } = useFetchShop();
+  function getCategories(data) {
+    const categories = [];
+    for (const product of data) {
+      if (!categories.includes(product.category))
+        categories.push(product.category);
+    }
+    return categories;
+  }
+  const categories = data ? getCategories(data) : null;
   return (
     <div>
       <Header></Header>
-      <div className=" flex justify-center relative my-12 w-[fit-content] mx-auto">
-        <input
-          className="text-gray-800 px-3.5 py-4 pr-10 w-[240px] shadow-lg border-1 rounded-2xl border-gray-400 h-[34px] md:text-lg md:h-[38px] md:w-[280px] focus:outline-1"
-          type="text"
-          placeholder="Search..."
-        />
-        <IoIosSearch
-          className="absolute right-[10px] top-[22%] z-[-2]"
-          size={22}
-        />
+      <div className="relative ">
+        <div className=" flex justify-center relative my-12 w-[fit-content] mx-auto">
+          <input
+            className="text-gray-800 px-3.5 py-4 pr-10 w-[240px] shadow-lg border-1 rounded-2xl border-gray-400 h-[34px] md:text-lg md:h-[38px] md:w-[280px] focus:outline-1"
+            type="text"
+            placeholder="Search..."
+          />
+          <IoIosSearch
+            className="absolute right-[10px] top-[22%] z-[-2]"
+            size={22}
+          />
+        </div>
+        <div className="flex">
+          <Filters categories={categories}></Filters>
+          <div className="flex flex-grow items-start  justify-center">
+            {loading && (
+              <div className="pt-40">
+                <Loading />
+              </div>
+            )}{" "}
+            {data && (
+              <div className="grid grid-cols-1, md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 p-4">
+                {data.map((product) => (
+                  <ProductCard
+                    key={crypto.randomUUID()}
+                    title={product.title}
+                    price={product.price}
+                    image={product.image}
+                    rating={product.rating}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
       </div>
-      <Filters></Filters>
     </div>
   );
 }

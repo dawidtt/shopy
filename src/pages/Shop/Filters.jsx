@@ -5,7 +5,7 @@ import { FaRegStar } from "react-icons/fa";
 import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 
-function Filters() {
+function Filters({ categories }) {
   const [filtersVisible, setFiltersVisible] = useState(
     window.innerWidth >= 768 ? true : false
   );
@@ -14,14 +14,14 @@ function Filters() {
     else setFiltersVisible(false);
   };
   return (
-    <div className="w-fit bg-gray-100 md:bg-white md:w-[280px] p-4 rounded-r-xl">
+    <div className="absolute w-[100%] md:static md:w-fit md:pl-4 left-[0] top-[0] z-4">
       {!filtersVisible && (
-        <button onClick={toggleVisible}>
+        <button className="ml-4 mt-12" onClick={toggleVisible}>
           <VscSettings size={26} />
         </button>
       )}
       {filtersVisible && (
-        <div className="">
+        <div className="absolute w-[100%] md:static letft-0  top-0   md:bg-white md:w-[280px] p-4 rounded-xl bg-blue-100">
           <div className="flex justify-between ">
             <h3 className="text-2xl">Filters</h3>
             <button className="md:hidden" onClick={toggleVisible}>
@@ -32,6 +32,19 @@ function Filters() {
           <div className="border-r-1 pr-6">
             <div className="flex flex-col gap-2.5 mt-3 py-3 border-t-1 border-t-gray-500 ">
               <h4 className="text-lg">Categories</h4>
+              {categories &&
+                categories.map((category) => {
+                  return (
+                    <label
+                      className="flex gap-2"
+                      key={crypto.randomUUID()}
+                      htmlFor={category}
+                    >
+                      <input type="checkbox" name={category} id={category} />
+                      {category}
+                    </label>
+                  );
+                })}
             </div>
             <div className="flex flex-col gap-2.5 mt-3 py-3 border-t-1 border-t-gray-500 ">
               <h4 className="text-lg">Rating</h4>
