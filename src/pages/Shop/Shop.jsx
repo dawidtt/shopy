@@ -4,6 +4,7 @@ import Filters from "./Filters";
 import { useFetchShop } from "../../hooks/useFetchShop";
 import Loading from "./Loading";
 import ProductCard from "./ProductCard";
+import Footer from "../../components/Footer";
 function Shop() {
   const { data, loading, error } = useFetchShop();
   function getCategories(data) {
@@ -39,7 +40,7 @@ function Shop() {
               </div>
             )}{" "}
             {data && (
-              <div className="grid grid-cols-1, md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 p-4">
+              <div className="grid grid-cols-1, lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8 p-4">
                 {data.map((product) => (
                   <ProductCard
                     key={crypto.randomUUID()}
@@ -54,6 +55,7 @@ function Shop() {
           </div>
         </div>
       </div>
+      <Footer></Footer>
     </div>
   );
 }
