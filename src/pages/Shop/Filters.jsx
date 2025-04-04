@@ -4,6 +4,7 @@ import { FaStar } from "react-icons/fa";
 import { FaRegStar } from "react-icons/fa";
 import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
+import Rating from "../../components/Rating";
 
 function Filters({ categories }) {
   const [filtersVisible, setFiltersVisible] = useState(
@@ -46,107 +47,47 @@ function Filters({ categories }) {
                   );
                 })}
             </div>
-            <div className="flex flex-col gap-2.5 mt-3 py-3 border-t-1 border-t-gray-500 ">
+            <div className="flex flex-col mt-3 py-3 border-t-1 border-t-gray-500 ">
               <h4 className="text-lg">Rating</h4>
               <label className="flex gap-2" htmlFor="rating-5">
                 <input type="checkbox" name="rating-5" id="rating-5" />{" "}
-                <div className="flex">
-                  <FaStar fill="#fde047" size={22} />
-                  <FaStar fill="#fde047" size={22} />
-                  <FaStar fill="#fde047" size={22} />
-                  <FaStar fill="#fde047" size={22} />
-                  <FaStar fill="#fde047" size={22} />
-                </div>
+                <Rating rating={{ rate: 5 }}></Rating>
               </label>
               <label className="flex gap-2" htmlFor="rating-45">
                 <input type="checkbox" name="rating-45" id="rating-45" />{" "}
-                <div className="flex">
-                  <FaStar fill="#fde047" size={22} />
-                  <FaStar fill="#fde047" size={22} />
-                  <FaStar fill="#fde047" size={22} />
-                  <FaStar fill="#fde047" size={22} />
-                  <FaStarHalfAlt fill="#fde047" size={22} />
-                </div>
+                <Rating rating={{ rate: 4.5 }}></Rating>
               </label>
               <label className="flex gap-2" htmlFor="rating-4">
                 <input type="checkbox" name="rating-4" id="rating-4" />{" "}
-                <div className="flex">
-                  <FaStar fill="#fde047" size={22} />
-                  <FaStar fill="#fde047" size={22} />
-                  <FaStar fill="#fde047" size={22} />
-                  <FaStar fill="#fde047" size={22} />
-                  <FaRegStar fill="#fde047" size={22} />
-                </div>
+                <Rating rating={{ rate: 4 }}></Rating>
               </label>
               <label className="flex gap-2" htmlFor="rating-35">
                 <input type="checkbox" name="rating-35" id="rating-35" />{" "}
-                <div className="flex">
-                  <FaStar fill="#fde047" size={22} />
-                  <FaStar fill="#fde047" size={22} />
-                  <FaStar fill="#fde047" size={22} />
-                  <FaStarHalfAlt fill="#fde047" size={22} />
-                  <FaRegStar fill="#fde047" size={22} />
-                </div>
+                <Rating rating={{ rate: 3.5 }}></Rating>
               </label>
               <label className="flex gap-2" htmlFor="rating-3">
                 <input type="checkbox" name="rating-3" id="rating-3" />{" "}
-                <div className="flex">
-                  <FaStar fill="#fde047" size={22} />
-                  <FaStar fill="#fde047" size={22} />
-                  <FaStar fill="#fde047" size={22} />
-                  <FaRegStar fill="#fde047" size={22} />
-                  <FaRegStar fill="#fde047" size={22} />
-                </div>
+                <Rating rating={{ rate: 3 }}></Rating>
               </label>
               <label className="flex gap-2" htmlFor="rating-25">
                 <input type="checkbox" name="rating-25" id="rating-25" />{" "}
-                <div className="flex">
-                  <FaStar fill="#fde047" size={22} />
-                  <FaStar fill="#fde047" size={22} />
-                  <FaStarHalfAlt fill="#fde047" size={22} />
-                  <FaRegStar fill="#fde047" size={22} />
-                  <FaRegStar fill="#fde047" size={22} />
-                </div>
+                <Rating rating={{ rate: 2.5 }}></Rating>
               </label>
               <label className="flex gap-2" htmlFor="rating-2">
                 <input type="checkbox" name="rating-2" id="rating-2" />{" "}
-                <div className="flex">
-                  <FaStar fill="#fde047" size={22} />
-                  <FaStar fill="#fde047" size={22} />
-                  <FaRegStar fill="#fde047" size={22} />
-                  <FaRegStar fill="#fde047" size={22} />
-                  <FaRegStar fill="#fde047" size={22} />
-                </div>
+                <Rating rating={{ rate: 2 }}></Rating>
               </label>
               <label className="flex gap-2" htmlFor="rating-15">
                 <input type="checkbox" name="rating-15" id="rating-15" />{" "}
-                <div className="flex">
-                  <FaStar fill="#fde047" size={22} />
-                  <FaStarHalfAlt fill="#fde047" size={22} />
-                  <FaRegStar fill="#fde047" size={22} />
-                  <FaRegStar fill="#fde047" size={22} />
-                  <FaRegStar fill="#fde047" size={22} />
-                </div>
+                <Rating rating={{ rate: 1.5 }}></Rating>
               </label>
               <label className="flex gap-2" htmlFor="rating-1">
                 <input type="checkbox" name="rating-1" id="rating-1" />{" "}
-                <div className="flex">
-                  <FaStar fill="#fde047" size={22} />
-                  <FaRegStar fill="#fde047" size={22} />
-                  <FaRegStar fill="#fde047" size={22} />
-                  <FaRegStar fill="#fde047" size={22} />
-                  <FaRegStar fill="#fde047" size={22} />
-                </div>
+                <Rating rating={{ rate: 1 }}></Rating>
               </label>
               <label className="flex gap-2" htmlFor="rating-05">
                 <input type="checkbox" name="rating-05" id="rating-05" />{" "}
-                <div className="flex">
-                  <FaStarHalfAlt fill="#fde047" size={22} />
-                  <FaRegStar fill="#fde047" size={22} />
-                  <FaRegStar fill="#fde047" size={22} />
-                  <FaRegStar fill="#fde047" size={22} />
-                  <FaRegStar fill="#fde047" size={22} />
-                </div>
+                <Rating rating={{ rate: 0.5 }}></Rating>
               </label>
             </div>
             <div className="flex flex-col gap-2.5 mt-3 py-3 border-t-1 border-t-gray-500">
