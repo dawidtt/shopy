@@ -83,3 +83,7 @@
     opacity: 0;
   }
 }
+
+input[type="checkbox"] {
+  width: 18px;
+}

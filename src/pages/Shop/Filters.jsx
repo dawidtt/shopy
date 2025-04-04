@@ -92,23 +92,23 @@ function Filters({ categories }) {
             </div>
             <div className="flex flex-col gap-2.5 mt-3 py-3 border-t-1 border-t-gray-500">
               <h4 className="text-lg">Price</h4>
-              <label htmlFor="price-0-5">
+              <label className="flex gap-2" htmlFor="price-0-5">
                 <input type="checkbox" name="price-0-5" id="price-0-5" /> $0 -
                 $5
               </label>
-              <label htmlFor="price-5-25">
+              <label className="flex gap-2" htmlFor="price-5-25">
                 <input type="checkbox" name="price-5-25" id="price-5-25" /> $5 -
                 $25
               </label>
-              <label htmlFor="price-25-75">
+              <label className="flex gap-2" htmlFor="price-25-75">
                 <input type="checkbox" name="price-25-75" id="price-25-75" />{" "}
                 $25 - $75
               </label>
-              <label htmlFor="price-75-150">
+              <label className="flex gap-2" htmlFor="price-75-150">
                 <input type="checkbox" name="price-75-150" id="price-75-150" />{" "}
                 $75 - $150
               </label>
-              <label htmlFor="price-150-250">
+              <label className="flex gap-2" htmlFor="price-150-250">
                 <input
                   type="checkbox"
                   name="price-150-250"
@@ -116,7 +116,7 @@ function Filters({ categories }) {
                 />{" "}
                 $150 - $250
               </label>
-              <label htmlFor="price-above-250">
+              <label className="flex gap-2" htmlFor="price-above-250">
                 <input
                   type="checkbox"
                   name="price-above-250"
