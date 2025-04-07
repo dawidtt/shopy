@@ -13,16 +13,34 @@ function Shop() {
   function searchOnChange(e) {
     const search = e.target.value;
 
-    console.log(search);
-
-    console.log(data);
-
     setSearchData(
       data.filter((data) =>
         data.title.toLowerCase().includes(search.toLowerCase())
       )
     );
-    console.log(searchData);
+  }
+  const [filters, setFilters] = useState({
+    categories: [],
+    prices: [],
+    ratings: [],
+  });
+
+  function onChangeCategory(e) {
+    console.log(e.target.value);
+    if (e.target.checked) {
+      setFilters({
+        ...filters,
+        categories: [...filters.categories, e.target.value],
+      });
+    } else if (!e.target.checked) {
+      setFilters({
+        ...filters,
+        categories: [
+          filters.categories.filter((category) => category !== e.target.value),
+        ],
+      });
+    }
+    console.log(filters);
   }
   function getCategories(data) {
     const categories = [];
@@ -32,7 +50,7 @@ function Shop() {
     }
     return categories;
   }
-  const categories = data ? getCategories(data) : null;
+  const allCategories = data ? getCategories(data) : null;
   return (
     <div>
       <Header></Header>
@@ -50,7 +68,10 @@ function Shop() {
           />
         </div>
         <div className="flex">
-          <Filters categories={categories}></Filters>
+          <Filters
+            categories={allCategories}
+            onChangeCategory={onChangeCategory}
+          ></Filters>
           <div className="flex flex-grow items-start  justify-center">
             {loading && (
               <div className="pt-40">
