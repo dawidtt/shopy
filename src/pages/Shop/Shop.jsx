@@ -5,8 +5,25 @@ import { useFetchShop } from "../../hooks/useFetchShop";
 import Loading from "./Loading";
 import ProductCard from "./ProductCard";
 import Footer from "../../components/Footer";
+import { useState } from "react";
 function Shop() {
   const { data, loading, error } = useFetchShop();
+  const [searchData, setSearchData] = useState([]);
+
+  function searchOnChange(e) {
+    const search = e.target.value;
+
+    console.log(search);
+
+    console.log(data);
+
+    setSearchData(
+      data.filter((data) =>
+        data.title.toLowerCase().includes(search.toLowerCase())
+      )
+    );
+    console.log(searchData);
+  }
   function getCategories(data) {
     const categories = [];
     for (const product of data) {
@@ -22,6 +39,7 @@ function Shop() {
       <div className="relative ">
         <div className=" flex justify-center relative my-12 w-[fit-content] mx-auto">
           <input
+            onChange={searchOnChange}
             className="text-gray-800 px-3.5 py-4 pr-10 w-[240px] shadow-lg border-1 rounded-2xl border-gray-400 h-[34px] md:text-lg md:h-[38px] md:w-[280px] focus:outline-1"
             type="text"
             placeholder="Search..."
@@ -41,7 +59,7 @@ function Shop() {
             )}{" "}
             {data && (
               <div className="grid grid-cols-1, lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8 p-4">
-                {data.map((product) => (
+                {(searchData.length > 0 ? searchData : data).map((product) => (
                   <ProductCard
                     key={crypto.randomUUID()}
                     title={product.title}
