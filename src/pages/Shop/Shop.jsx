@@ -9,6 +9,24 @@ import { useState } from "react";
 function Shop() {
   const { data, loading, error } = useFetchShop();
   const [searchData, setSearchData] = useState([]);
+  const [filters, setFilters] = useState({
+    categories: [],
+    prices: [],
+    ratings: [],
+  });
+
+  function filterData(shopData) {
+    const filteredCategoriesArr =
+      filters.categories.length > 0
+        ? shopData.filter((product) =>
+            filters.categories.includes(product.category)
+          )
+        : shopData;
+    console.log(filters);
+
+    console.log(filteredCategoriesArr);
+    return filteredCategoriesArr;
+  }
 
   function searchOnChange(e) {
     const search = e.target.value;
@@ -19,11 +37,6 @@ function Shop() {
       )
     );
   }
-  const [filters, setFilters] = useState({
-    categories: [],
-    prices: [],
-    ratings: [],
-  });
 
   function onChangeCategory(e) {
     console.log(e.target.value);
@@ -35,12 +48,11 @@ function Shop() {
     } else if (!e.target.checked) {
       setFilters({
         ...filters,
-        categories: [
-          filters.categories.filter((category) => category !== e.target.value),
-        ],
+        categories: filters.categories.filter(
+          (category) => category !== e.target.value
+        ),
       });
     }
-    console.log(filters);
   }
   function getCategories(data) {
     const categories = [];
@@ -80,15 +92,17 @@ function Shop() {
             )}{" "}
             {data && (
               <div className="grid grid-cols-1, lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8 p-4">
-                {(searchData.length > 0 ? searchData : data).map((product) => (
-                  <ProductCard
-                    key={crypto.randomUUID()}
-                    title={product.title}
-                    price={product.price}
-                    image={product.image}
-                    rating={product.rating}
-                  />
-                ))}
+                {(searchData.length > 0 ? searchData : filterData(data)).map(
+                  (product) => (
+                    <ProductCard
+                      key={crypto.randomUUID()}
+                      title={product.title}
+                      price={product.price}
+                      image={product.image}
+                      rating={product.rating}
+                    />
+                  )
+                )}
               </div>
             )}
           </div>

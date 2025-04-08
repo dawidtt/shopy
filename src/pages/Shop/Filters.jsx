@@ -7,12 +7,43 @@ import { IoMdClose } from "react-icons/io";
 import Rating from "../../components/Rating";
 
 function Filters({ categories, onChangeCategory }) {
+  const [categoryChecboxes, setCategoryCheckboxes] = useState(
+    new Array(4).fill(false)
+  );
+  const [ratingCheckboxes, setRatingCheckboxes] = useState(
+    new Array(10).fill(false)
+  );
+  const [priceCheckboxes, setPriceCheckboxes] = useState(
+    new Array(6).fill(false)
+  );
+
   const [filtersVisible, setFiltersVisible] = useState(
     window.innerWidth >= 768 ? true : false
   );
   const toggleVisible = () => {
     if (filtersVisible === false) setFiltersVisible(true);
     else setFiltersVisible(false);
+  };
+  const handleOnChangeCheckboxCategory = (index) => {
+    setCategoryCheckboxes(
+      categoryChecboxes.map((checkbox, mapIndex) =>
+        index === mapIndex ? !checkbox : checkbox
+      )
+    );
+  };
+  const handleOnChangeCheckboxRating = (index) => {
+    setCategoryCheckboxes(
+      categoryChecboxes.map((checkbox, mapIndex) =>
+        index === mapIndex ? !checkbox : checkbox
+      )
+    );
+  };
+  const handleOnChangeCheckboxPrice = (index) => {
+    setCategoryCheckboxes(
+      categoryChecboxes.map((checkbox, mapIndex) =>
+        index === mapIndex ? !checkbox : checkbox
+      )
+    );
   };
   return (
     <div className="absolute w-[100%] md:static md:flex  md:w-fit md:pl-4 left-[0] top-[0] z-4">
@@ -35,7 +66,7 @@ function Filters({ categories, onChangeCategory }) {
               <h4 className="text-lg">Categories</h4>
               <form className="flex flex-col gap-2.5">
                 {categories &&
-                  categories.map((category) => {
+                  categories.map((category, index) => {
                     return (
                       <label
                         className="flex gap-2"
@@ -47,7 +78,9 @@ function Filters({ categories, onChangeCategory }) {
                           name={category}
                           id={category}
                           value={category}
+                          checked={categoryChecboxes[index]}
                           onChange={(e) => {
+                            handleOnChangeCheckboxCategory(index);
                             onChangeCategory(e);
                           }}
                         />
