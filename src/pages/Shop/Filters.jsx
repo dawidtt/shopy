@@ -6,7 +6,7 @@ import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import Rating from "../../components/Rating";
 
-function Filters({ categories, onChangeCategory }) {
+function Filters({ categories, onChangeCategory, onChangeRatings }) {
   const [categoryChecboxes, setCategoryCheckboxes] = useState(
     new Array(4).fill(false)
   );
@@ -32,8 +32,8 @@ function Filters({ categories, onChangeCategory }) {
     );
   };
   const handleOnChangeCheckboxRating = (index) => {
-    setCategoryCheckboxes(
-      categoryChecboxes.map((checkbox, mapIndex) =>
+    setRatingCheckboxes(
+      ratingCheckboxes.map((checkbox, mapIndex) =>
         index === mapIndex ? !checkbox : checkbox
       )
     );
@@ -45,6 +45,12 @@ function Filters({ categories, onChangeCategory }) {
       )
     );
   };
+  let ratingValue = 5;
+  const ratingCheckboxesValues = [];
+  while (ratingValue > 0.4) {
+    ratingCheckboxesValues.push(ratingValue);
+    ratingValue -= 0.5;
+  }
   return (
     <div className="absolute w-[100%] md:static md:flex  md:w-fit md:pl-4 left-[0] top-[0] z-4">
       {!filtersVisible && (
@@ -92,96 +98,29 @@ function Filters({ categories, onChangeCategory }) {
             </div>
             <div className="flex flex-col mt-3 py-3 border-t-1 border-t-gray-500 ">
               <h4 className="text-lg">Rating</h4>
-              <label className="flex gap-2" htmlFor="rating-5">
-                <input
-                  type="checkbox"
-                  name="rating-5"
-                  id="rating-5"
-                  value={5}
-                />{" "}
-                <Rating rating={{ rate: 5 }}></Rating>
-              </label>
-              <label className="flex gap-2" htmlFor="rating-45">
-                <input
-                  type="checkbox"
-                  name="rating-45"
-                  id="rating-45"
-                  value={4.5}
-                />{" "}
-                <Rating rating={{ rate: 4.5 }}></Rating>
-              </label>
-              <label className="flex gap-2" htmlFor="rating-4">
-                <input
-                  type="checkbox"
-                  name="rating-4"
-                  id="rating-4"
-                  value={4}
-                />{" "}
-                <Rating rating={{ rate: 4 }}></Rating>
-              </label>
-              <label className="flex gap-2" htmlFor="rating-35">
-                <input
-                  type="checkbox"
-                  name="rating-35"
-                  id="rating-35"
-                  value={3.5}
-                />{" "}
-                <Rating rating={{ rate: 3.5 }}></Rating>
-              </label>
-              <label className="flex gap-2" htmlFor="rating-3">
-                <input
-                  type="checkbox"
-                  name="rating-3"
-                  id="rating-3"
-                  value={3}
-                />{" "}
-                <Rating rating={{ rate: 3 }}></Rating>
-              </label>
-              <label className="flex gap-2" htmlFor="rating-25">
-                <input
-                  type="checkbox"
-                  name="rating-25"
-                  id="rating-25"
-                  value={2.5}
-                />{" "}
-                <Rating rating={{ rate: 2.5 }}></Rating>
-              </label>
-              <label className="flex gap-2" htmlFor="rating-2">
-                <input
-                  type="checkbox"
-                  name="rating-2"
-                  id="rating-2"
-                  value={2}
-                />{" "}
-                <Rating rating={{ rate: 2 }}></Rating>
-              </label>
-              <label className="flex gap-2" htmlFor="rating-15">
-                <input
-                  type="checkbox"
-                  name="rating-15"
-                  id="rating-15"
-                  value={1.5}
-                />{" "}
-                <Rating rating={{ rate: 1.5 }}></Rating>
-              </label>
-              <label className="flex gap-2" htmlFor="rating-1">
-                <input
-                  type="checkbox"
-                  name="rating-1"
-                  id="rating-1"
-                  value={1}
-                />{" "}
-                <Rating rating={{ rate: 1 }}></Rating>
-              </label>
-              <label className="flex gap-2" htmlFor="rating-05">
-                <input
-                  type="checkbox"
-                  name="rating-05"
-                  id="rating-05"
-                  value={0.5}
-                />{" "}
-                <Rating rating={{ rate: 0.5 }}></Rating>
-              </label>
+
+              {ratingCheckboxesValues.map((ratingMapValue, index) => {
+                return (
+                  <label
+                    className="flex gap-2"
+                    htmlFor={`rating-${ratingValue}`}
+                    key={crypto.randomUUID()}
+                  >
+                    <input
+                      type="checkbox"
+                      name={`rating-${ratingMapValue}`}
+                      id={`rating-${ratingMapValue}`}
+                      value={ratingMapValue}
+                      checked={ratingCheckboxes[index]}
+                      onChange={(e) => {
+                        handleOnChangeCheckboxRating(index);
+                        onChangeRatings(e);
+                      }}
+                    />{" "}
+                    <Rating rating={{ rate: ratingMapValue }}></Rating>
+                  </label>
+                );
+              })}
             </div>
             <div className="flex flex-col gap-2.5 mt-3 py-3 border-t-1 border-t-gray-500">
               <h4 className="text-lg">Price</h4>

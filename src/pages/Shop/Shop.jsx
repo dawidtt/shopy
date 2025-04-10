@@ -23,9 +23,51 @@ function Shop() {
           )
         : shopData;
     console.log(filters);
+    const fixedRatingsShopData = filteredCategoriesArr.map((product) => {
+      let newRate;
 
-    console.log(filteredCategoriesArr);
-    return filteredCategoriesArr;
+      if (product.rating.rate < 0.75) {
+        newRate = 0.5;
+      } else if (product.rating.rate < 1.25) {
+        newRate = 1;
+      } else if (product.rating.rate < 1.75) {
+        newRate = 1.5;
+      } else if (product.rating.rate < 2.25) {
+        newRate = 2;
+      } else if (product.rating.rate < 2.75) {
+        newRate = 2.5;
+      } else if (product.rating.rate < 3.25) {
+        newRate = 3;
+      } else if (product.rating.rate < 3.75) {
+        newRate = 3.5;
+      } else if (product.rating.rate < 4.25) {
+        newRate = 4;
+      } else if (product.rating.rate < 4.75) {
+        newRate = 4.5;
+      } else {
+        newRate = 5;
+      }
+
+      return {
+        ...product,
+        rating: {
+          ...product.rating,
+          rate: newRate,
+        },
+      };
+    });
+
+    const filteredRatingsArr =
+      filters.ratings.length > 0
+        ? fixedRatingsShopData.filter((product) =>
+            filters.ratings.includes(`${product.rating.rate}`)
+          )
+        : fixedRatingsShopData;
+    fixedRatingsShopData;
+    console.log(fixedRatingsShopData);
+    console.log(filteredRatingsArr);
+
+    return filteredRatingsArr;
   }
 
   function searchOnChange(e) {
@@ -39,7 +81,6 @@ function Shop() {
   }
 
   function onChangeCategory(e) {
-    console.log(e.target.value);
     if (e.target.checked) {
       setFilters({
         ...filters,
@@ -51,6 +92,19 @@ function Shop() {
         categories: filters.categories.filter(
           (category) => category !== e.target.value
         ),
+      });
+    }
+  }
+  function onChangeRatings(e) {
+    if (e.target.checked) {
+      setFilters({
+        ...filters,
+        ratings: [...filters.ratings, e.target.value],
+      });
+    } else if (!e.target.checked) {
+      setFilters({
+        ...filters,
+        ratings: filters.ratings.filter((rating) => rating !== e.target.value),
       });
     }
   }
@@ -83,6 +137,7 @@ function Shop() {
           <Filters
             categories={allCategories}
             onChangeCategory={onChangeCategory}
+            onChangeRatings={onChangeRatings}
           ></Filters>
           <div className="flex flex-grow items-start  justify-center">
             {loading && (
