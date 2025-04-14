@@ -63,11 +63,24 @@ function Shop() {
             filters.ratings.includes(`${product.rating.rate}`)
           )
         : fixedRatingsShopData;
-    fixedRatingsShopData;
-    console.log(fixedRatingsShopData);
-    console.log(filteredRatingsArr);
 
-    return filteredRatingsArr;
+    console.log(filteredRatingsArr);
+    const filteredPricessArr =
+      filters.prices.length > 0
+        ? filteredRatingsArr.filter((product) => {
+            filters.prices.find(
+              (priceSpan) =>
+                product.price > priceSpan.min &&
+                product.price <
+                  (priceSpan.max === null || product.price < priceSpan.max)
+            ) !== undefined
+              ? true
+              : false;
+          })
+        : filteredRatingsArr;
+    console.log(filteredPricessArr);
+
+    return filteredPricessArr;
   }
 
   function searchOnChange(e) {
@@ -108,6 +121,22 @@ function Shop() {
       });
     }
   }
+  function onChangePrices(e) {
+    const priceValue = JSON.parse(e.target.value);
+    console.log(priceValue);
+    if (e.target.checked) {
+      setFilters({
+        ...filters,
+        prices: [...filters.prices, priceValue],
+      });
+    } else if (!e.target.checked) {
+      setFilters({
+        ...filters,
+        prices: filters.prices.filter((price) => price !== priceValue),
+      });
+    }
+    console.log(filters);
+  }
   function getCategories(data) {
     const categories = [];
     for (const product of data) {
@@ -138,6 +167,7 @@ function Shop() {
             categories={allCategories}
             onChangeCategory={onChangeCategory}
             onChangeRatings={onChangeRatings}
+            onChangePrices={onChangePrices}
           ></Filters>
           <div className="flex flex-grow items-start  justify-center">
             {loading && (

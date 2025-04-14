@@ -6,7 +6,12 @@ import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import Rating from "../../components/Rating";
 
-function Filters({ categories, onChangeCategory, onChangeRatings }) {
+function Filters({
+  categories,
+  onChangeCategory,
+  onChangeRatings,
+  onChangePrices,
+}) {
   const [categoryChecboxes, setCategoryCheckboxes] = useState(
     new Array(4).fill(false)
   );
@@ -39,8 +44,8 @@ function Filters({ categories, onChangeCategory, onChangeRatings }) {
     );
   };
   const handleOnChangeCheckboxPrice = (index) => {
-    setCategoryCheckboxes(
-      categoryChecboxes.map((checkbox, mapIndex) =>
+    setPriceCheckboxes(
+      priceCheckboxes.map((checkbox, mapIndex) =>
         index === mapIndex ? !checkbox : checkbox
       )
     );
@@ -51,6 +56,15 @@ function Filters({ categories, onChangeCategory, onChangeRatings }) {
     ratingCheckboxesValues.push(ratingValue);
     ratingValue -= 0.5;
   }
+  const pricesCheckboxesValues = [
+    { min: 0, max: 5 },
+    { min: 5, max: 25 },
+    { min: 25, max: 75 },
+    { min: 75, max: 150 },
+    { min: 150, max: 250 },
+    { min: 250, max: null },
+  ];
+
   return (
     <div className="absolute w-[100%] md:static md:flex  md:w-fit md:pl-4 left-[0] top-[0] z-4">
       {!filtersVisible && (
@@ -103,7 +117,7 @@ function Filters({ categories, onChangeCategory, onChangeRatings }) {
                 return (
                   <label
                     className="flex gap-2"
-                    htmlFor={`rating-${ratingValue}`}
+                    htmlFor={`rating-${ratingMapValue}`}
                     key={crypto.randomUUID()}
                   >
                     <input
@@ -124,16 +138,38 @@ function Filters({ categories, onChangeCategory, onChangeRatings }) {
             </div>
             <div className="flex flex-col gap-2.5 mt-3 py-3 border-t-1 border-t-gray-500">
               <h4 className="text-lg">Price</h4>
-              <label className="flex gap-2" htmlFor="price-0-5">
-                <input
-                  type="checkbox"
-                  name="price-0-5"
-                  id="price-0-5"
-                  value={{ min: 0, max: 5 }}
-                />{" "}
-                $0 - $5
-              </label>
-              <label className="flex gap-2" htmlFor="price-5-25">
+              {pricesCheckboxesValues.map((priceMapValue, index) => {
+                return (
+                  <label
+                    key={crypto.randomUUID()}
+                    className="flex gap-2"
+                    htmlFor={`price-${priceMapValue.min}-${
+                      priceMapValue.max ? priceMapValue.max : "<"
+                    }`}
+                  >
+                    <input
+                      type="checkbox"
+                      name={`price-${priceMapValue.min}-${
+                        priceMapValue.max ? priceMapValue.max : "<"
+                      }`}
+                      id={`price-${priceMapValue.min}-${
+                        priceMapValue.max ? priceMapValue.max : "<"
+                      }`}
+                      value={JSON.stringify(priceMapValue)}
+                      checked={priceCheckboxes[index]}
+                      onChange={(e) => {
+                        handleOnChangeCheckboxPrice(index);
+                        onChangePrices(e);
+                      }}
+                    />
+                    {`$${priceMapValue.min}  ${
+                      priceMapValue.max ? "- $" + priceMapValue.max : "<"
+                    }`}
+                  </label>
+                );
+              })}
+
+              {/* <label className="flex gap-2" htmlFor="price-5-25">
                 <input
                   type="checkbox"
                   name="price-5-25"
@@ -177,7 +213,7 @@ function Filters({ categories, onChangeCategory, onChangeRatings }) {
                   value={{ min: 250, max: null }}
                 />
                 $250{"<"}
-              </label>
+              </label> */}
             </div>
           </div>
         </div>
