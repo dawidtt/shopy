@@ -22,7 +22,6 @@ function Shop() {
             filters.categories.includes(product.category)
           )
         : shopData;
-    console.log(filters);
     const fixedRatingsShopData = filteredCategoriesArr.map((product) => {
       let newRate;
 
@@ -64,21 +63,18 @@ function Shop() {
           )
         : fixedRatingsShopData;
 
-    console.log(filteredRatingsArr);
     const filteredPricessArr =
       filters.prices.length > 0
         ? filteredRatingsArr.filter((product) => {
-            filters.prices.find(
-              (priceSpan) =>
+            const isInFilters = filters.prices.find((priceSpan) => {
+              return (
                 product.price > priceSpan.min &&
-                product.price <
-                  (priceSpan.max === null || product.price < priceSpan.max)
-            ) !== undefined
-              ? true
-              : false;
+                (priceSpan.max === null || product.price < priceSpan.max)
+              );
+            });
+            return isInFilters === undefined ? false : true;
           })
         : filteredRatingsArr;
-    console.log(filteredPricessArr);
 
     return filteredPricessArr;
   }
@@ -123,7 +119,6 @@ function Shop() {
   }
   function onChangePrices(e) {
     const priceValue = JSON.parse(e.target.value);
-    console.log(priceValue);
     if (e.target.checked) {
       setFilters({
         ...filters,
@@ -132,10 +127,11 @@ function Shop() {
     } else if (!e.target.checked) {
       setFilters({
         ...filters,
-        prices: filters.prices.filter((price) => price !== priceValue),
+        prices: filters.prices.filter((price) => {
+          return JSON.stringify(price) !== e.target.value;
+        }),
       });
     }
-    console.log(filters);
   }
   function getCategories(data) {
     const categories = [];
