@@ -182,6 +182,7 @@ function Shop() {
                 {filterData(data).map((product) => (
                   <ProductCard
                     key={crypto.randomUUID()}
+                    id={product.id}
                     title={product.title}
                     price={product.price}
                     image={product.image}

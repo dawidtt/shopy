@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import Rating from "../../components/Rating";
-function ProductCard({ title, price, image, rating }) {
+function ProductCard({ id, title, price, image, rating }) {
   return (
     <div className="rounded-xl shadow-xl p-6 flex flex-col justify-between will-change-transform hover:scale-[1.02] transition-transform hover:cursor-pointer">
       <div className="flex-grow flex items-center justify-center py-4">
