@@ -8,11 +8,11 @@ import Footer from "../../components/Footer";
 import { useState } from "react";
 function Shop() {
   const { data, loading, error } = useFetchShop();
-  const [searchData, setSearchData] = useState([]);
   const [filters, setFilters] = useState({
     categories: [],
     prices: [],
     ratings: [],
+    search: "",
   });
 
   function filterData(shopData) {
@@ -76,17 +76,11 @@ function Shop() {
           })
         : filteredRatingsArr;
 
-    return filteredPricessArr;
-  }
-
-  function searchOnChange(e) {
-    const search = e.target.value;
-
-    setSearchData(
-      data.filter((data) =>
-        data.title.toLowerCase().includes(search.toLowerCase())
-      )
+    const filteresSearchArr = filteredPricessArr.filter((product) =>
+      product.title.toLowerCase().includes(filters.search.toLowerCase())
     );
+
+    return filteresSearchArr;
   }
 
   function onChangeCategory(e) {
@@ -133,6 +127,18 @@ function Shop() {
       });
     }
   }
+  function searchOnChange(e) {
+    setFilters({ ...filters, search: e.target.value });
+  }
+  // function searchOnChange(e) {
+  //   const search = e.target.value;
+
+  //   setSearchData(
+  //     data.filter((data) =>
+  //       data.title.toLowerCase().includes(search.toLowerCase())
+  //     )
+  //   );
+  // }
   function getCategories(data) {
     const categories = [];
     for (const product of data) {
@@ -173,17 +179,15 @@ function Shop() {
             )}{" "}
             {data && (
               <div className="grid grid-cols-1, lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8 p-4">
-                {(searchData.length > 0 ? searchData : filterData(data)).map(
-                  (product) => (
-                    <ProductCard
-                      key={crypto.randomUUID()}
-                      title={product.title}
-                      price={product.price}
-                      image={product.image}
-                      rating={product.rating}
-                    />
-                  )
-                )}
+                {filterData(data).map((product) => (
+                  <ProductCard
+                    key={crypto.randomUUID()}
+                    title={product.title}
+                    price={product.price}
+                    image={product.image}
+                    rating={product.rating}
+                  />
+                ))}
               </div>
             )}
           </div>
