@@ -48,7 +48,7 @@ function Header() {
       </div>
       <div className="flex items-center justify-end md:w-[120px]">
         <Link
-          to="cart"
+          to="/shop/cart"
           className="flex items-center justify-center gap-2 hover:scale-[1.08] transition-transform"
         >
           <FaShoppingCart size="25px"></FaShoppingCart>
