@@ -1,8 +1,12 @@
 import PropTypes from "prop-types";
 import Rating from "../../components/Rating";
+import { Link } from "react-router-dom";
 function ProductCard({ id, title, price, image, rating }) {
   return (
-    <div className="rounded-xl shadow-xl p-6 flex flex-col justify-between will-change-transform hover:scale-[1.02] transition-transform hover:cursor-pointer">
+    <Link
+      to={`/shop/${id}`}
+      className="rounded-xl shadow-xl p-6 flex flex-col justify-between will-change-transform hover:scale-[1.02] transition-transform hover:cursor-pointer"
+    >
       <div className="flex-grow flex items-center justify-center py-4">
         <img className="w-[60%]" src={image} alt="" />
       </div>
@@ -17,7 +21,7 @@ function ProductCard({ id, title, price, image, rating }) {
           ADD TO CART
         </button>
       </div>
-    </div>
+    </Link>
   );
 }
 
