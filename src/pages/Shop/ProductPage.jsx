@@ -5,7 +5,10 @@ import MainButton from "../../components/MainButton/MainButton";
 import { useFetchShop } from "../../hooks/useFetchShop";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
+import { useCart } from "../../context/CartContext";
+
 function ProductPage({ title, description, price, rating }) {
+  const { addToCart } = useCart();
   const { id } = useParams();
   const { data, loading, error } = useFetchShop(`/${id}`);
   const [productNumber, setProductNumber] = useState(1);
@@ -56,7 +59,10 @@ function ProductPage({ title, description, price, rating }) {
                     +
                   </button>
                 </div>
-                <MainButton text={"Add to cart"}></MainButton>
+                <MainButton
+                  text={"Add to cart"}
+                  callback={() => addToCart(data, productNumber)}
+                ></MainButton>
               </div>
             </div>
           </div>

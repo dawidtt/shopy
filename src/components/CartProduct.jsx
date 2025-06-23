@@ -6,28 +6,38 @@ import { useState } from "react";
 
 import { FaRegTrashAlt } from "react-icons/fa";
 
-function CartProduct({ id, title, description, price, rating }) {
-  const { data, loading, error } = useFetchShop(`/${id}`);
-  console.log(data);
-  const [productNumber, setProductNumber] = useState(1);
+import { useCart } from "../context/CartContext";
+
+function CartProduct({ product }) {
+  // const { data, loading, error } = useFetchShop(`/${id}`);
+  // console.log(data);
+
+  const { updateCartQuantity } = useCart();
+
+  const [productNumber, setProductNumber] = useState(product.quantity);
   function handleProductNumber(eq) {
-    if (eq == "-" && productNumber > 1) setProductNumber(productNumber - 1);
-    else if (eq == "+") setProductNumber(productNumber + 1);
+    if (eq == "-" && productNumber > 1) {
+      updateCartQuantity(product.id, product.quantity - 1);
+      setProductNumber(productNumber - 1);
+    } else if (eq == "+") {
+      updateCartQuantity(product.id, product.quantity + 1);
+      setProductNumber(productNumber + 1);
+    }
   }
 
   return (
     <div className="flex flex-col justify-between">
-      {data && (
+      {product && (
         <div className="flex  justify-center items-center lg:items-stretch  gap-6 md:gap-12 max-w-[800px] lg:mx-auto shadow-xl p-8 rounded-lg border-1 border-gray-200">
           <img
             className="w-[55px] sm:w-[80px] md:w-[120px]"
-            src={data.image}
+            src={product.image}
             alt=""
           />
           <div className="flex flex-col justify-between">
             <div>
               <h2 className="text-sm sm:text-lg md:text-2xl font-bold">
-                {data.title}
+                {product.title}
               </h2>
             </div>
             <div>
@@ -51,7 +61,7 @@ function CartProduct({ id, title, description, price, rating }) {
                     +
                   </button>
                 </div>
-                <p className="text-lg lg:text-2xl"> ${data.price}</p>
+                <p className="text-lg lg:text-2xl"> ${product.price}</p>
                 <FaRegTrashAlt fill="#f54245" size={25} />
               </div>
             </div>

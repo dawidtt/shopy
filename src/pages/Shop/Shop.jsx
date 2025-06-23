@@ -6,7 +6,11 @@ import Loading from "./Loading";
 import ProductCard from "./ProductCard";
 import Footer from "../../components/Footer";
 import { useState } from "react";
+import { useCart } from "../../context/CartContext";
+
 function Shop() {
+  const { addToCart, cartTotalItems } = useCart();
+
   const { data, loading, error } = useFetchShop();
   const [filters, setFilters] = useState({
     categories: [],
@@ -187,6 +191,7 @@ function Shop() {
                     price={product.price}
                     image={product.image}
                     rating={product.rating}
+                    addToCart={() => addToCart(product)}
                   />
                 ))}
               </div>

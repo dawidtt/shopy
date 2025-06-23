@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import Rating from "../../components/Rating";
 import { Link } from "react-router-dom";
-function ProductCard({ id, title, price, image, rating }) {
+function ProductCard({ id, title, price, image, rating, addToCart }) {
   return (
     <Link
       to={`/shop/${id}`}
@@ -17,7 +17,15 @@ function ProductCard({ id, title, price, image, rating }) {
           ${price}
         </p>
 
-        <button className="my-3 font-bold w-full bg-blue-500 text-sm px-4 py-3  rounded-lg text-white uppercase  shadow-xl opacity-95 hover:scale-[1.02] hover:cursor-pointer  transition-transform will-change-transform hover:opacity-100 ">
+        <button
+          onClick={(event) => {
+            addToCart();
+
+            event.stopPropagation();
+            event.preventDefault();
+          }}
+          className="my-3 font-bold w-full bg-blue-500 text-sm px-4 py-3  rounded-lg text-white uppercase  shadow-xl opacity-95 hover:scale-[1.02] hover:cursor-pointer  transition-transform will-change-transform hover:opacity-100 "
+        >
           ADD TO CART
         </button>
       </div>

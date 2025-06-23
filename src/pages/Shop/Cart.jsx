@@ -1,13 +1,19 @@
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import CartProduct from "../../components/CartProduct";
+import { useCart } from "../../context/CartContext";
 function Cart() {
+  const { cart } = useCart();
+  console.log(cart);
   return (
     <div className="flex flex-col justify-between h-[100vh]">
       <Header></Header>
 
       <div className="flex flex-col justify-between items-center md:flex-row md:items-start px-4 lg:px-24 gap-4 md:gap-24  py-8 max-w-[1800px] md:mx-auto">
-        <CartProduct id={2}></CartProduct>
+        {cart.map((product) => (
+          <CartProduct key={product.id} product={product} />
+        ))}
+
         <div className="max-w-[360px] flex flex-col justify-center items-stretch gap-4  shadow-xl p-8 rounded-lg border-1 border-gray-200">
           <h2 className="text-2xl">Order Summary</h2>
           <div className="flex justify-between">
