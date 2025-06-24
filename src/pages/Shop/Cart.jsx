@@ -8,7 +8,7 @@ function Cart() {
   return (
     <div className="min-h-[100vh] flex flex-col justify-between">
       <Header></Header>
-      <div className="flex-grow flex flex-col justify-between items-start ">
+      <div className="flex-grow flex flex-col justify-between items-center md:items-start ">
         <div className="flex flex-col justify-between items-center md:flex-row md:items-start px-4 lg:px-12 gap-4 md:gap-24  py-8 max-w-[1800px] md:mx-auto ">
           <div className="flex flex-col gap-8">
             {cart.map((product) => (
