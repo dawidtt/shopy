@@ -9,9 +9,6 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { useCart } from "../context/CartContext";
 
 function CartProduct({ product }) {
-  // const { data, loading, error } = useFetchShop(`/${id}`);
-  // console.log(data);
-
   const { updateCartQuantity, removeFromCart } = useCart();
 
   const [productNumber, setProductNumber] = useState(product.quantity);

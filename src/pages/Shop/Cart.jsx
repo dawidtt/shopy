@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 function Cart() {
   const { cart, cartTotalPrice } = useCart();
-  console.log(cart);
   return (
     <div className="min-h-[100vh] flex flex-col justify-between">
       <Header></Header>
