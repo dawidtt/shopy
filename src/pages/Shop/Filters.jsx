@@ -66,14 +66,14 @@ function Filters({
   ];
 
   return (
-    <div className="absolute w-[100%] md:static md:flex  md:w-fit md:pl-4 left-[0] top-[0] z-4">
+    <div className="absolute w-[100%]  md:static  md:w-fit md:pl-4 left-0 top-22 z-4 ">
       {!filtersVisible && (
-        <button className="ml-4 mt-12" onClick={toggleVisible}>
+        <button className="ml-4" onClick={toggleVisible}>
           <VscSettings size={26} />
         </button>
       )}
       {filtersVisible && (
-        <div className="absolute w-[100%] md:static left-0  top-0   md:bg-white md:w-[280px] p-4 rounded-xl bg-blue-100">
+        <div className="absolute w-[90%] md:h-full md:static left-0  top-0   md:bg-white md:w-[280px] m-[5%] p-4 rounded-xl bg-blue-100">
           <div className="flex justify-between ">
             <h3 className="text-2xl">Filters</h3>
             <button className="md:hidden" onClick={toggleVisible}>
@@ -81,7 +81,7 @@ function Filters({
             </button>
           </div>
 
-          <div className="border-r-1 pr-6 h-full">
+          <div className="border-r-1 pr-6 md:h-full">
             <div className="flex flex-col gap-2.5 mt-3 py-3 border-t-1 border-t-gray-500 ">
               <h4 className="text-lg">Categories</h4>
               <form className="flex flex-col gap-2.5">

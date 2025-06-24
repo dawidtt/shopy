@@ -134,15 +134,7 @@ function Shop() {
   function searchOnChange(e) {
     setFilters({ ...filters, search: e.target.value });
   }
-  // function searchOnChange(e) {
-  //   const search = e.target.value;
 
-  //   setSearchData(
-  //     data.filter((data) =>
-  //       data.title.toLowerCase().includes(search.toLowerCase())
-  //     )
-  //   );
-  // }
   function getCategories(data) {
     const categories = [];
     for (const product of data) {
@@ -153,9 +145,9 @@ function Shop() {
   }
   const allCategories = data ? getCategories(data) : null;
   return (
-    <div>
+    <div className="min-h-[140vh] flex flex-col justify-between">
       <Header></Header>
-      <div className="relative ">
+      <div className="relative flex-grow">
         <div className=" flex justify-center relative my-12 w-[fit-content] mx-auto">
           <input
             onChange={searchOnChange}
@@ -168,14 +160,14 @@ function Shop() {
             size={22}
           />
         </div>
-        <div className="flex">
+        <div className="flex items-stretch flex-grow">
           <Filters
             categories={allCategories}
             onChangeCategory={onChangeCategory}
             onChangeRatings={onChangeRatings}
             onChangePrices={onChangePrices}
           ></Filters>
-          <div className="flex flex-grow items-start  justify-center">
+          <div className="flex flex-grow items-start  justify-center ">
             {loading && (
               <div className="pt-40">
                 <Loading />

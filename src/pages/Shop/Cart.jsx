@@ -16,7 +16,7 @@ function Cart() {
             ))}
           </div>
 
-          <div className="lg:w-[380px] flex flex-col justify-center items-stretch gap-4  shadow-xl p-8 rounded-lg border-1 border-gray-200 sticky top-32">
+          <div className="lg:w-[380px] flex flex-col justify-center items-stretch gap-4  shadow-xl p-8 mt-12 md:mt-0 rounded-lg border-1 border-gray-200 sticky top-32">
             <h2 className="text-xl lg:text-2xl  uppercase">Order Summary</h2>
             <div className="flex justify-between border-b-gray-400 border-b-1 pb-2">
               <p className="font-bold lg:text-xl">Total sum</p>
