@@ -57,7 +57,10 @@ function CartProduct({ product }) {
                     +
                   </button>
                 </div>
-                <p className="text-lg lg:text-2xl"> ${product.price}</p>
+                <p className="text-lg lg:text-2xl">
+                  {" "}
+                  ${Math.round(product.price * product.quantity * 100) / 100}
+                </p>
                 <button
                   className="cursor-pointer hover:scale-105 transition duration-100 will-change-transform"
                   onClick={() => removeFromCart(product.id)}

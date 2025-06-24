@@ -9,15 +9,15 @@ function Cart() {
   return (
     <div className="min-h-[100vh] flex flex-col justify-between">
       <Header></Header>
-      <div className="flex flex-col justify-between items-start ">
-        <div className="flex flex-col justify-between items-center md:flex-row md:items-start px-4 lg:px-24 gap-4 md:gap-24  py-8 max-w-[1800px] md:mx-auto ">
+      <div className="flex-grow flex flex-col justify-between items-start ">
+        <div className="flex flex-col justify-between items-center md:flex-row md:items-start px-4 lg:px-12 gap-4 md:gap-24  py-8 max-w-[1800px] md:mx-auto ">
           <div className="flex flex-col gap-8">
             {cart.map((product) => (
               <CartProduct key={product.id} product={product} />
             ))}
           </div>
 
-          <div className="w-[400px] flex flex-col justify-center items-stretch gap-4  shadow-xl p-8 rounded-lg border-1 border-gray-200 sticky top-32">
+          <div className="lg:w-[380px] flex flex-col justify-center items-stretch gap-4  shadow-xl p-8 rounded-lg border-1 border-gray-200 sticky top-32">
             <h2 className="text-xl lg:text-2xl  uppercase">Order Summary</h2>
             <div className="flex justify-between border-b-gray-400 border-b-1 pb-2">
               <p className="font-bold lg:text-xl">Total sum</p>
