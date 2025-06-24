@@ -12,7 +12,7 @@ function CartProduct({ product }) {
   // const { data, loading, error } = useFetchShop(`/${id}`);
   // console.log(data);
 
-  const { updateCartQuantity } = useCart();
+  const { updateCartQuantity, removeFromCart } = useCart();
 
   const [productNumber, setProductNumber] = useState(product.quantity);
   function handleProductNumber(eq) {
@@ -26,15 +26,11 @@ function CartProduct({ product }) {
   }
 
   return (
-    <div className="flex flex-col justify-between">
+    <div className="flex flex-col justify-between w-full ">
       {product && (
-        <div className="flex  justify-center items-center lg:items-stretch  gap-6 md:gap-12 max-w-[800px] lg:mx-auto shadow-xl p-8 rounded-lg border-1 border-gray-200">
-          <img
-            className="w-[55px] sm:w-[80px] md:w-[120px]"
-            src={product.image}
-            alt=""
-          />
-          <div className="flex flex-col justify-between">
+        <div className="flex  justify-center items-center lg:items-stretch  gap-6 md:gap-12 md:max-w-[800px] lg:mx-auto shadow-xl p-8 rounded-lg border-1 border-gray-200">
+          <img className="w-[20%] " src={product.image} alt="" />
+          <div className="flex flex-col justify-between w-[80%]">
             <div>
               <h2 className="text-sm sm:text-lg md:text-2xl font-bold">
                 {product.title}
@@ -62,7 +58,12 @@ function CartProduct({ product }) {
                   </button>
                 </div>
                 <p className="text-lg lg:text-2xl"> ${product.price}</p>
-                <FaRegTrashAlt fill="#f54245" size={25} />
+                <button
+                  className="cursor-pointer hover:scale-105 transition duration-100 will-change-transform"
+                  onClick={() => removeFromCart(product.id)}
+                >
+                  <FaRegTrashAlt fill="#f54245" size={25} />
+                </button>
               </div>
             </div>
           </div>

@@ -5,7 +5,9 @@ import { FaShoppingBasket } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 import Logo from "./Logo";
+import { useCart } from "../context/CartContext";
 function Header() {
+  const { cartTotalItems } = useCart();
   let location = useLocation();
   const isHome = location.pathname === "/";
   const isAboutUs = location.pathname === "/about-us";
@@ -46,11 +48,16 @@ function Header() {
           <span className="hidden sm:block text-xl">Shop</span>
         </Link>
       </div>
-      <div className="flex items-center justify-end md:w-[120px]">
+      <div className="flex items-center justify-end md:w-[120px] ">
         <Link
           to="/shop/cart"
-          className="flex items-center justify-center gap-2 hover:scale-[1.08] transition-transform"
+          className="flex items-center justify-center gap-2 hover:scale-[1.08] transition-transform relative"
         >
+          {cartTotalItems !== 0 && (
+            <div className="absolute text-sm text-white font-bold bg-red-600 rounded-full w-5 h-5 flex justify-center items-center top-[-12px] right-[-12px]">
+              {cartTotalItems > 9 ? "9+" : cartTotalItems}
+            </div>
+          )}
           <FaShoppingCart size="25px"></FaShoppingCart>
         </Link>
       </div>
