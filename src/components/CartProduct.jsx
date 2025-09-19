@@ -1,7 +1,3 @@
-import Rating from "./Rating";
-import MainButton from "./MainButton/MainButton";
-import { useFetchShop } from "../hooks/useFetchShop";
-import { useParams } from "react-router-dom";
 import { useState } from "react";
 
 import { FaRegTrashAlt } from "react-icons/fa";

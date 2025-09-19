@@ -9,9 +9,9 @@ import { useState } from "react";
 import { useCart } from "../../context/CartContext";
 
 function Shop() {
-  const { addToCart, cartTotalItems } = useCart();
+  const { addToCart } = useCart();
 
-  const { data, loading, error } = useFetchShop();
+  const { data, loading } = useFetchShop();
   const [filters, setFilters] = useState({
     categories: [],
     prices: [],

@@ -7,10 +7,10 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useCart } from "../../context/CartContext";
 
-function ProductPage({ title, description, price, rating }) {
+function ProductPage() {
   const { addToCart } = useCart();
   const { id } = useParams();
-  const { data, loading, error } = useFetchShop(`/${id}`);
+  const { data } = useFetchShop(`/${id}`);
   const [productNumber, setProductNumber] = useState(1);
   function handleProductNumber(eq) {
     if (eq == "-" && productNumber > 1) setProductNumber(productNumber - 1);

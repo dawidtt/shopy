@@ -1,7 +1,5 @@
 import { VscSettings } from "react-icons/vsc";
-import { FaStarHalfAlt } from "react-icons/fa";
-import { FaStar } from "react-icons/fa";
-import { FaRegStar } from "react-icons/fa";
+
 import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import Rating from "../../components/Rating";
@@ -168,52 +166,6 @@ function Filters({
                   </label>
                 );
               })}
-
-              {/* <label className="flex gap-2" htmlFor="price-5-25">
-                <input
-                  type="checkbox"
-                  name="price-5-25"
-                  id="price-5-25"
-                  value={{ min: 5, max: 25 }}
-                />{" "}
-                $5 - $25
-              </label>
-              <label className="flex gap-2" htmlFor="price-25-75">
-                <input
-                  type="checkbox"
-                  name="price-25-75"
-                  id="price-25-75"
-                  value={{ min: 25, max: 75 }}
-                />{" "}
-                $25 - $75
-              </label>
-              <label className="flex gap-2" htmlFor="price-75-150">
-                <input
-                  type="checkbox"
-                  name="price-75-150"
-                  id="price-75-150"
-                  value={{ min: 75, max: 150 }}
-                />{" "}
-                $75 - $150
-              </label>
-              <label className="flex gap-2" htmlFor="price-150-250">
-                <input
-                  type="checkbox"
-                  name="price-150-250"
-                  id="price-150-250"
-                  value={{ min: 150, max: 250 }}
-                />{" "}
-                $150 - $250
-              </label>
-              <label className="flex gap-2" htmlFor="price-above-250">
-                <input
-                  type="checkbox"
-                  name="price-above-250"
-                  id="price-above-250"
-                  value={{ min: 250, max: null }}
-                />
-                $250{"<"}
-              </label> */}
             </div>
           </div>
         </div>
